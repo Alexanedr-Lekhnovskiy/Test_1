@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LABA_01
 {
@@ -8,7 +9,14 @@ namespace LABA_01
         public string LastName { get; private set; }
         public Money Balance { get; private set; }
 
-        //private ;
+        private List<DaysPayment> ScoreDaysPayment = new List<DaysPayment>();
+
+        private List<MonthsPayment> ScoreMonthsPayment = new List<MonthsPayment>();
+
+        private int countDaysPayment = 0;
+
+        private int countMonthsPayment = 0;
+
 
         public Person (string firstName, string lastName, Money balance)
         {
@@ -94,8 +102,6 @@ namespace LABA_01
 
 
 
-
-
         public void PayingOne(Subscriptions sub)
         {
             Money Total =  sub.GetTotal();
@@ -110,25 +116,29 @@ namespace LABA_01
         }
 
 
-        //Ещё надо добавить
-        //public void AddPayingDays(Subscriptions sub)
-        //{ 
+        public int AddPayingDays(DaysPayment subscription)
+        {
+            ScoreDaysPayment.Insert(countDaysPayment, subscription);
+            return countDaysPayment++;
+        }
+
+        public void RemovePayingDays(int IdDaysPayment)
+        {
+            ScoreDaysPayment.RemoveAt(IdDaysPayment);
+        }
 
 
-        //    if (Balance > sub.GetTotal())
-        //    {
+        public int AddPayingMonths(MonthsPayment subscription)
+        {
+            ScoreMonthsPayment.Insert(countMonthsPayment, subscription);
+            return countMonthsPayment++;
+        }
 
+        public void RemovePayingMonths(int IdMonthsPayment)
+        {
+            ScoreMonthsPayment.RemoveAt(IdMonthsPayment);
+        }
 
-        //    }
-        //    else
-        //    {
-
-        //    }
-        
-        //}
-
-        //public void RemovePayingDays(Subscriptions sub)
-        //{ }
 
     }
 }
